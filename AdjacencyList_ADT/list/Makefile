@@ -18,6 +18,9 @@ $(OBJ)/%.o: $(SRC)/%.c $(INCLUDE)/%.h
 $(BIN)/%: $(APPS)/%.c $(OBJ)/*.o
 	gcc $< $(OBJ)/*.o -I $(INCLUDE) -o $@
 
+init:
+	mkdir $(BIN) $(OBJ)
+
 run:
 	$(BIN)/test_list
 
