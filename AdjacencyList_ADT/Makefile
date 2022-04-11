@@ -9,7 +9,9 @@ all: graphADT myapps
 
 graphADT: \
 	$(OBJ)/graph.o \
-	$(OBJ)/list.o
+	$(OBJ)/list.o \
+	$(OBJ)/queue.o \
+	$(OBJ)/stack.o
 
 myapps: \
 	$(BIN)/test_graph
