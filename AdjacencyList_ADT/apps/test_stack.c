@@ -11,7 +11,7 @@ int main(){
     push(stack, 7);
     showStack(stack);
     
-    while(!isEmpty(stack)){
+    while(!isStackEmpty(stack)){
         printf("%d\n", top(stack));
         pop(stack);
     }

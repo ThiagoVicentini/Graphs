@@ -4,19 +4,19 @@
 
 typedef int data_type;
 
-typedef struct _node{
+typedef struct _stack_node{
     data_type data;
-    struct _node *prev;
-    struct _node *next;
-} NodeObject;
+    struct _stack_node *prev;
+    struct _stack_node *next;
+} S_NodeObject;
 
 typedef struct _stack{
-    struct _node* first;
-    struct _node* last;
+    struct _stack_node* first;
+    struct _stack_node* last;
     size_t size;
 } Stack;
 
-NodeObject* newNode(data_type val);
+S_NodeObject* newS_Node(data_type val);
 
 Stack* newStack(void);
 void freeStack(Stack** stack);

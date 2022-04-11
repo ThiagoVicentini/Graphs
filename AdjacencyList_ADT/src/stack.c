@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-NodeObject* newNode(data_type val){
-    NodeObject* node = malloc(sizeof *node);
+S_NodeObject* newS_Node(data_type val){
+    S_NodeObject* node = malloc(sizeof *node);
     node->next = NULL;
     node->prev = NULL;
     node->data = val;
@@ -23,9 +23,9 @@ Stack* newStack(void){
 void freeStack(Stack** _stack){
     Stack* stack = *_stack;
     
-    NodeObject *node = stack->first;
+    S_NodeObject *node = stack->first;
     while(node != NULL){
-        NodeObject *auxiliar = node;
+        S_NodeObject *auxiliar = node;
         node = node->next;
         free(auxiliar);
     }
@@ -39,15 +39,15 @@ size_t getStackSize(Stack* stack){
 }
 
 bool isStackEmpty(Stack* stack){
-    if(getSize(stack) == 0)
+    if(getStackSize(stack) == 0)
         return true;
     return false;
 }
 
 void push(Stack* stack, int vertex){
 
-    NodeObject* node = newNode(vertex);
-    if(isEmpty(stack)){
+    S_NodeObject* node = newS_Node(vertex);
+    if(isStackEmpty(stack)){
         stack->first = node;
         stack->last = node;
     }else{
@@ -59,8 +59,8 @@ void push(Stack* stack, int vertex){
 }
 
 void pop(Stack* stack){
-    if(!isEmpty(stack)){
-        NodeObject* node = stack->last;
+    if(!isStackEmpty(stack)){
+        S_NodeObject* node = stack->last;
         if(stack->size == 1){
             stack->first = NULL;
             stack->last = NULL;
@@ -79,7 +79,7 @@ data_type top(Stack* stack){
 }
 
 void showStack(Stack* stack){
-    NodeObject* node = stack->first;
+    S_NodeObject* node = stack->first;
     while(node != NULL){
         printf("%d -> ", node->data);
         node = node->next;
