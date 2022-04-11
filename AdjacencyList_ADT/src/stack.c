@@ -34,11 +34,11 @@ void freeStack(Stack** _stack){
     *_stack = NULL;
 }
 
-size_t getSize(Stack* stack){
+size_t getStackSize(Stack* stack){
     return stack->size;
 }
 
-bool isEmpty(Stack* stack){
+bool isStackEmpty(Stack* stack){
     if(getSize(stack) == 0)
         return true;
     return false;

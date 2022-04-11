@@ -21,8 +21,8 @@ NodeObject* newNode(data_type val);
 Stack* newStack(void);
 void freeStack(Stack** stack);
 
-size_t getSize(Stack* stack);
-bool isEmpty(Stack* stack);
+size_t getStackSize(Stack* stack);
+bool isStackEmpty(Stack* stack);
 
 void push(Stack* stack, int vertex);
 void pop(Stack* stack);
