@@ -4,18 +4,18 @@
 
 typedef int data_type;
 
-typedef struct _node{
+typedef struct _queue_node{
     data_type data;
     struct _node *next;
-} NodeObject;
+} QNodeObject;
 
 typedef struct _queue{
-    struct _node* first;
-    struct _node* last;
+    struct _queue_node* first;
+    struct _queue_node* last;
     size_t size;
 } Queue;
 
-NodeObject* newNode(data_type val);
+QNodeObject* newNode(data_type val);
 
 Queue* newQueue(void);
 void freeQueue(Queue** queue);

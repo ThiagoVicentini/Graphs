@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-NodeObject* newNode(data_type val){
-    NodeObject* node = malloc(sizeof *node);
+QNodeObject* newNode(data_type val){
+    QNodeObject* node = malloc(sizeof *node);
     node->next = NULL;
     node->data = val;
 
@@ -22,9 +22,9 @@ Queue* newQueue(void){
 void freeQueue(Queue** _queue){
     Queue* queue = *_queue;
     
-    NodeObject *node = queue->first;
+    QNodeObject *node = queue->first;
     while(node != NULL){
-        NodeObject *auxiliar = node;
+        QNodeObject *auxiliar = node;
         node = node->next;
         free(auxiliar);
     }
@@ -45,7 +45,7 @@ bool isEmpty(Queue* queue){
 
 void enqueue(Queue* queue, int vertex){
 
-    NodeObject* node = newNode(vertex);
+    QNodeObject* node = newNode(vertex);
     if(isEmpty(queue)){
         queue->first = node;
         queue->last = node;
@@ -58,7 +58,7 @@ void enqueue(Queue* queue, int vertex){
 
 void dequeue(Queue* queue){
     if(!isEmpty(queue)){
-        NodeObject* node = queue->first;
+        QNodeObject* node = queue->first;
         if(queue->size == 1){
             queue->first = NULL;
             queue->last = NULL;
