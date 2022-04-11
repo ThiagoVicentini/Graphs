@@ -15,6 +15,13 @@ int main(){
     removeEdge(graph, 0, 3);
     showAdjList(graph);
 
+    bool isConnected = isConnectedUsingBFS(graph, 0, true);
+    if(isConnected)
+        printf("The graph is connected.\n");
+    else
+        printf("The graph is not connected.\n");
+    
+    printf("\n");
     Graph* graphT = transpose(graph);
     showAdjList(graphT);
 

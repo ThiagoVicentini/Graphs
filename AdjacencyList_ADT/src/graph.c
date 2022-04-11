@@ -1,7 +1,16 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "graph.h"
 #include "list.h"
+#include "queue.h"
+#include "stack.h"
+
+/*
+static int cmp_str_vizinhos(const void *lhs, const void *rhs){
+    return *(int*)rhs - *(int*)lhs;
+}
+*/
 
 /**
     Aloca espaço para o grafo e para a lista de adjacencia (inicialmente vazia) e inicializa a quantidade de vertices e arestas
@@ -78,4 +87,83 @@ Graph* transpose(Graph* graph){
         }
     }
     return graphT;
+}
+
+void BFS(Graph* graph, int startVertex, colorType* color, int* distance, int* antecessor, bool verbose){
+    color[startVertex] = grey;
+    distance[startVertex] = 0;
+    antecessor[startVertex] = -1;
+    
+    Queue* queue = newQueue();
+    enqueue(queue, startVertex);
+
+    while(!isEmpty(queue)){
+        int processingVertex = peek(queue);
+        if(verbose) printf("%d -> ", processingVertex);
+        dequeue(queue);
+        NodeObject* node = *(graph->adjList[processingVertex]);
+
+        while (node != NULL){
+            if(color[node->data] == white){
+                color[node->data] = grey;
+                distance[node->data] = distance[processingVertex] + 1;
+                antecessor[node->data] = processingVertex;
+                enqueue(queue, node->data);
+            }
+            node = node->next;
+        }
+        color[processingVertex] = black;
+    }
+
+    freeQueue(&queue);
+}
+
+void DFS(Graph* graph, int startVertex, colorType* color, int* distance, int* antecessor){
+    color[startVertex] = grey;
+    distance[startVertex] = 0;
+    antecessor[startVertex] = -1;
+
+    Stack* stack = newStack();
+    push(stack, startVertex);
+
+    while (!isStackEmpty(stack)){
+        int processVertex = top(stack);
+  		pop(stack);
+        NodeObject* node = *(graph->adjList[processVertex]);
+
+        while (node != NULL){
+            if(color[processVertex] == white){
+                color[node->data] = grey;
+                distance[node->data] = distance[processVertex] + 1;
+                antecessor[node->data] = processVertex;
+                push(stack, node->data);
+            }
+            node = node->next;
+        }
+        color[processVertex] = black;
+    }
+
+    freeStack(&stack);
+}
+
+bool isConnectedUsingBFS(Graph* graph, int startVertex, bool verbose) {
+    int numberOfVertices = graph->numberOfVertices;
+    int distance[numberOfVertices], antecessor[numberOfVertices];
+    colorType color[numberOfVertices];
+
+    for(int vertex=0; vertex < numberOfVertices; vertex++) {
+        color[vertex] = white;
+        distance[vertex] = -1;
+        antecessor[vertex] = -1;
+    }
+
+    BFS(graph, startVertex, color, distance, antecessor, verbose);
+    bool isConnected = false;
+
+    for(int i=0; i < numberOfVertices; i++){
+        if(distance[i] == -1)
+            isConnected = true;
+    }
+
+    return isConnected;
 }

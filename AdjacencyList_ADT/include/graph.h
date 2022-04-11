@@ -1,5 +1,6 @@
 #pragma once
 #include <stdlib.h>
+#include <stdbool.h>
 #include "list.h"
 
 typedef List* ptrList;
@@ -20,3 +21,7 @@ void insertEdge(Graph* graph, int vOrig, int vDest);
 void removeEdge(Graph* graph, int vOrig, int vDest);
 void showAdjList(Graph* graph);
 Graph* transpose(Graph* graph);
+
+void BFS(Graph* graph, int startVertex, colorType* color, int* distance, int* antecessor, bool verbose);
+void DFS(Graph* graph, int startVertex, colorType* color, int* distance, int* antecessor);
+bool isConnectedUsingBFS(Graph* graph, int startVertex, bool verbose);
