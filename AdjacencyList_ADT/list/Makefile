@@ -26,3 +26,4 @@ run:
 
 clean:
 	rm -rf $(BIN)/* $(OBJ)/*
+	clear
