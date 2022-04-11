@@ -6,7 +6,7 @@ typedef int data_type;
 
 typedef struct _queue_node{
     data_type data;
-    struct _node *next;
+    struct _queue_node *next;
 } QNodeObject;
 
 typedef struct _queue{
@@ -15,7 +15,7 @@ typedef struct _queue{
     size_t size;
 } Queue;
 
-QNodeObject* newNode(data_type val);
+QNodeObject* newQNode(data_type val);
 
 Queue* newQueue(void);
 void freeQueue(Queue** queue);

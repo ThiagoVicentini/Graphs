@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-QNodeObject* newNode(data_type val){
+QNodeObject* newQNode(data_type val){
     QNodeObject* node = malloc(sizeof *node);
     node->next = NULL;
     node->data = val;
@@ -45,7 +45,7 @@ bool isEmpty(Queue* queue){
 
 void enqueue(Queue* queue, int vertex){
 
-    QNodeObject* node = newNode(vertex);
+    QNodeObject* node = newQNode(vertex);
     if(isEmpty(queue)){
         queue->first = node;
         queue->last = node;
